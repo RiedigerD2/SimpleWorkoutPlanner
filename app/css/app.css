@@ -1,0 +1,191 @@
+/* app css stylesheet */
+.hoverwell:hover {
+  background-color: #52575c;
+  cursor: pointer;
+}
+select, textarea {
+  color: #52575c;
+}
+
+.well-title {
+  margin-top: 0px;
+}
+.session {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.votingWidget {
+  height: 64px;
+  padding: 7px;
+}
+
+.votingButton {
+  padding-left:6px;
+  cursor:pointer;
+}
+
+.sessionThumbnail {
+    height:100%;
+    overflow: hidden;
+}
+
+
+.calendar{
+    border: 1px solid #555;
+    width: 238px;
+}
+.calendar .row {
+    margin-left: 0px;
+}
+.calendar .row div{
+    float:left;
+    padding:2px;
+    width:30px;
+    text-align:center;
+}
+.calendar-nav-left {
+    float:left;
+    width: 20px;
+    padding:2px;
+}
+.calendar-nav-right {
+    float:left;
+    width: 20px;
+    padding:2px;
+    text-align:right;
+}
+
+.calendar .row .calendar-hdr {
+    padding:2px;
+    float:left;
+    width: 166px;
+    text-align:center;
+}
+.pointer {
+    cursor: pointer;
+}
+.date-picker {
+    position: absolute;
+    top: -7px;
+    left: 209px;
+    background-color: #272b30;
+}
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak{
+    display: none;
+}
+
+/* slide in from the Top */
+@keyframes slideInTop {
+    from    { transform:translateY(-100%); }
+    to      { transform: translateY(0); }
+}
+
+/* slide in from the right */
+@keyframes slideInRight {
+    from    { transform:translateX(100%); }
+    to      { transform: translateX(0); }
+}
+
+/* slide in from the bottom */
+@keyframes slideInBottom {
+    from    { transform:translateY(100%); }
+    to      { transform: translateY(0); }
+}
+
+/* slide in from the left */
+@keyframes slideInLeft {
+    from    { transform:translateX(100%); }
+    to      { transform: translateX(0); }
+}
+
+
+
+/* slide out to the top */
+@keyframes slideOutTop {
+    from    { transform:translateY(0); }
+    to      { transform: translateY(-100%); }
+}
+
+/* slide out to the right */
+@keyframes slideOutRight {
+    from    { transform:translateX(0); }
+    to      { transform: translateX(100%); }
+}
+
+
+/* slide out to the bottom */
+@keyframes slideOutBottom {
+    from    { transform:translateY(0); }
+    to      { transform: translateY(100%); }
+}
+
+/* slide out to the left */
+@keyframes slideOutLeft {
+    from    { transform:translateX(0); }
+    to      { transform: translateX(-100%); }
+}
+
+
+.topEnter {
+    animation: slideInTop 0.5s  ease-in;
+}
+.topLeave {
+    animation: slideOutTop 0.5s  ease-in;
+}
+
+.rightEnter {
+    animation: slideInRight 5s  ease-in;
+    -webkit-animation:  slideInRight 5s  ease-in;
+}
+.rightLeave {
+    animation: slideOutRight 0.5s  ease-in;
+}
+
+.bottomEnter {
+    animation: slideInBottom 0.5s both ease-in;
+}
+.bottomLeave {
+    animation: slideOutBottom 0.5s  ease-in;
+}
+
+.leftEnter {
+    animation: slideInLeft 0.5s  ease-in;
+}
+.LeftLeave {
+    animation: slideOutLeft 5s  ease-in;
+     -webkit-animation:  slideOutLeft 5s  ease-in;
+}
+
+.ng-enter{
+    z-index: 8888;
+}
+.ng-leave{
+    z-index: 9999;
+}
+
+
+.main .gen{
+    transition: 0.7s all;
+}
+
+.main.ng-enter .gen{
+    opacity: 0;
+}
+
+.main .landing{
+    transition: 0.7s all;
+}
+
+.main.ng-enter .landing{
+    opacity: 0;
+}
+.main.ng-leave .landing{
+    opacity: 0;
+}
+

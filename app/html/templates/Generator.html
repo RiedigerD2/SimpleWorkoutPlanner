@@ -1,0 +1,50 @@
+<div class="gen ">
+    <div class="col-xs-6 col-xs-offset-3" style="text-align: center">
+        <h1>Generate New Workout</h1> </div>
+    <div class="container-fluid">
+        <div class="form-group col-md-10 col-md-offset-1 col-xs-12">
+            <form class="col-md-10 col-xs-12 container-fluid" name='workoutTemplate'>
+                <div class="row">
+                    <div class="form-group">
+                        <input required class="form-control input-md " placeholder="Muscle Groups" ng-model="workout.MuscleGroups" id="muscle-groups" type="text"> </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-10 col-md-offset-1 col-xs-12">
+                        <label>Workout Goal</label>
+                        <div class="btn-group btn-group-lg btn-group-justified">
+                            <label class="btn btn-default" ng-model="workout.goal" uib-btn-radio="'Strength'"> Strength </label>
+                            <label class="btn btn-default " ng-model="workout.goal" uib-btn-radio="'Size'"> Size </label>
+                        </div>
+                        <div class="btn-group btn-group-lg btn-group-justified">
+                            <label class="btn btn-default" ng-model="workout.goal" uib-btn-radio="'Endurance'"> Endurance </label>
+                            <label class="btn btn-default" ng-model="workout.goal" uib-btn-radio="'Power'"> Power </label>
+                        </div>
+                    </div>
+                </div>
+                <!--comment-->
+                <div class="row">
+                    <div class="form-group col-md-10 col-md-offset-1 col-xs-12" required>
+                        <label>Workout Length</label>
+                        <div class="btn-group btn-group-lg btn-group-justified hidden-xs">
+                            <label class="btn btn-default" ng-model="workout.Length" uib-btn-radio="'Short'"> Short </label>
+                            <label class="btn btn-default " ng-model="workout.Length" uib-btn-radio="'Medium'"> Medium </label>
+                            <label class="btn btn-default" ng-model="workout.Length" uib-btn-radio="'Long'"> Long </label>
+                        </div>
+                        <div class="btn-group btn-group-vertical btn-group-lg  visible-xs">
+                            <label class="btn btn-default" ng-model="workout.Length" uib-btn-radio="'Short'"> Short </label>
+                            <label class="btn btn-default " ng-model="workout.Length" uib-btn-radio="'Medium'"> Medium </label>
+                            <label class="btn btn-default" ng-model="workout.Length" uib-btn-radio="'Long'"> Long </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-10 col-md-offset-1 col-xs-12">
+                        <div class="btn-group btn-group-lg btn-group-justified">
+                            <label type='submit' class="btn btn-primary" ng-click="Generate(workout,workoutTemplate)">GENERATE</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
