@@ -20,7 +20,7 @@ var routs = function (arg) {
         });
     });
 
-    router.route('/single/muscle/:muscleName').get(function (req, res) {
+    router.route('/muscle/:muscleName/single').get(function (req, res) {
         var muscleName = req.params.muscleName;
 
         muscleLogic.getMuscle(muscleName).then(function (result) {

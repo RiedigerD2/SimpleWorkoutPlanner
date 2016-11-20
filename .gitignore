@@ -1,3 +1,9 @@
-./node_modules
-./app/bower
-./planning
+/node_modules/
+
+/app/lib/bower/*
+
+/app/lib/angular/
+
+/planning/
+
+/app/img/

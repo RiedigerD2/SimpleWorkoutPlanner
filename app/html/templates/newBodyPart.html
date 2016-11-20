@@ -1,0 +1,23 @@
+<div class="container-fluid">
+    <h1 style="text-align: center">New Muscle</h1>
+    <form name='new-muslce-form' ng-submit='createMuscle(newMuscle)'>
+        <br/>
+        <input type='text' ng-model='newBodyPart.bodyPartName' class='form-control' placeholder=' Body Part...' />
+        <br/>
+        <!--md-transform-chip="ctrl.transformChip($chip)" -->
+        <md-chips ng-model="selectedMuscles" md-autocomplete-snap md-require-match="true">
+            <md-autocomplete md-selected-item="ctrl.selectedItem" md-search-text="searchText" md-items="item in getMuscles(searchText)" md-item-text="item.muscleName" splaceholder="Search for a muscle">
+                <span md-highlight-text="searchText">{{item.muscleName}}</span>
+            </md-autocomplete>
+            <md-chip-template>
+                <span>
+                    {{$chip.muscleName}}
+                    <!--<em>({{$chip.type}})</em>-->
+                </span>
+            </md-chip-template>
+        </md-chips>
+        </br>
+
+        <input type="submit" class="btn btn-primary col-xs-offset-4 col-xs-4" style="text-align: center">
+        </forms>
+</div>

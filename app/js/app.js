@@ -1,6 +1,6 @@
 (function () {
 
-    var app = angular.module('SimpleWorkoutPlanner', ['ngRoute', 'ngAnimate', 'ngResource', 'ui.bootstrap'])
+    var app = angular.module('SimpleWorkoutPlanner', ['ngRoute', 'ngAnimate', 'ngResource', 'ngMaterial', 'ui.bootstrap'])
         .config(function ($routeProvider) {
             $routeProvider.when('/', {
                     templateUrl: 'html/templates/LandingPage.html',
@@ -28,6 +28,11 @@
                 .when('/admin/muscle', {
                     templateUrl: 'html/templates/newMuscle.html',
                     controller: 'NewMuscleController'
+
+                })
+                .when('/admin/bodypart', {
+                    templateUrl: 'html/templates/newBodyPart.html',
+                    controller: 'NewBodyPartController' //todo change controller
 
                 });
         });

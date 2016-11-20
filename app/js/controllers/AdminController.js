@@ -9,7 +9,7 @@
         };
 
         $scope.addBodyPart = function () {
-            $location.path('/my-workouts');
+            $location.path('/admin/bodypart');
         };
 
     };
