@@ -1,25 +1,27 @@
 {
-    "name": "simple-workout-planner",
-    "version": "1.0.0",
-    "description": "Plan Workouts",
-    "main": "app.js",
-    "dependencies": {
-        "express": "^4.13.4",
-        "mongoose": "^4.6.1"
-    },
-    "devDependencies": {
-        "bower": "^1.7.9",
-        "gulp": "^3.9.1",
-        "gulp-jscs": "^4.0.0",
-        "gulp-jshint": "^2.0.1",
-        "gulp-nodemon": "^2.1.0",
-        "jshint": "^2.9.3",
-        "jshint-stylish": "^2.2.1",
-        "wiredep": "^4.0.0"
-    },
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "author": "David R.",
-    "license": "ISC"
+  "name": "simple-workout-planner",
+  "version": "1.0.0",
+  "description": "Plan Workouts",
+  "main": "app.js",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.13.4",
+    "mongoose": "^4.6.1"
+  },
+  "devDependencies": {
+    "bower": "^1.7.9",
+    "gulp": "^3.9.1",
+    "gulp-inject": "^4.1.0",
+    "gulp-jscs": "^4.0.0",
+    "gulp-jshint": "^2.0.1",
+    "gulp-nodemon": "^2.1.0",
+    "jshint": "^2.9.3",
+    "jshint-stylish": "^2.2.1",
+    "wiredep": "^4.0.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "David R.",
+  "license": "ISC"
 }

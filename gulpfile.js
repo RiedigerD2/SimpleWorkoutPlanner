@@ -13,21 +13,29 @@ gulp.task('style', function () {
         .pipe(jscs());
 });
 
+var paths={
+    sources: ['./app/js/**/*.js','./app/css/*.css']
+};
+
 gulp.task('inject', function () {
+    console.log('Injecting');
     var wiredep = require('wiredep').stream;
     var options = {
         bowerJson: require('./bower.json'),
         directory: './app/lib/bower'
     };
 
-    return gulp.src('./app/index.html')
+    var inject = require('gulp-inject');
+    return gulp.src(['./app/index.html'])
         .pipe(wiredep(options))
-        .pipe(gulp.dest('./app'))
+        .pipe(inject(gulp.src(paths.sources, {read: false}), {relative: true}))
+        .pipe(gulp.dest('./app'));
 });
 
 gulp.task('server', ['style', 'inject'], function () {
     'use strict';
 
+    
     var options = {
         script: 'server/web-server.js',
         delayTime: 1,
