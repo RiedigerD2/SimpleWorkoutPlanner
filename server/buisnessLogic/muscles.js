@@ -35,3 +35,20 @@ module.exports.getMuscle = function (muscleName) {
         });
     });
 };
+
+module.exports.getMuscleByID = function (muscleID) {
+    return new Promise(function (resolve, reject) {
+        model.muscle.findOne({
+            _id: {
+                $regex: muscleID,
+                $options: 'i'
+            }
+        }, function (err, results) {
+            if (err) {
+                reject(err);
+                throw err;
+            }
+            resolve(results)
+        });
+    });
+};

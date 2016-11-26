@@ -1,0 +1,10 @@
+<div>
+    <div ng-repeat='error in messagingService.errorMessages()'>
+       <div class="alert alert-danger" role="alert">{{error.message}}</div>
+    </div>
+
+    <div ng-repeat='error in messagingService.successMessages()'>
+       <div class="alert alert-success" role="alert">{{error.message}}</div>
+    </div>
+
+</div>

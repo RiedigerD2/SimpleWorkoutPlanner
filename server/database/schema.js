@@ -22,10 +22,9 @@ module.exports.bodyPartSchema = new Schema({
         unique: [true, 'Sorry we already have that body part.']
     },
     muscles: {
-        type: [{
-            type: Number, //muscleSchema
-            ref: "muscle"
-        }]
+        type: [mongoose.Schema.Types.ObjectId ],
+        ref: 'muscle'
+        
     }
 });
 

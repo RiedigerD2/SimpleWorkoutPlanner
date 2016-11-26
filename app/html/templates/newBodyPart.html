@@ -1,18 +1,18 @@
 <div class="container-fluid">
-    <h1 style="text-align: center">New Muscle</h1>
-    <form name='new-muslce-form' ng-submit='createMuscle(newMuscle)'>
+    <h1 style="text-align: center">New Body Part</h1>
+    <form name='new-muslce-form' ng-submit='createBodyPart(newBodyPart)'>
+        <swp-messaging></swp-messaging>
         <br/>
-        <input type='text' ng-model='newBodyPart.bodyPartName' class='form-control' placeholder=' Body Part...' />
         <br/>
+        <input type='text' ng-model='newBodyPart.bodyPartName' class='form-control' placeholder='Body Part...' />
         <!--md-transform-chip="ctrl.transformChip($chip)" -->
-        <md-chips ng-model="selectedMuscles" md-autocomplete-snap md-require-match="true">
-            <md-autocomplete md-selected-item="ctrl.selectedItem" md-search-text="searchText" md-items="item in getMuscles(searchText)" md-item-text="item.muscleName" splaceholder="Search for a muscle">
+        <md-chips ng-model="selectedMuscles" md-autocomplete-snap md-require-match="true" >
+            <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText" md-items="item in getMuscles(searchText)" md-item-text="item.muscleName" placeholder="Search for muscles..." >
                 <span md-highlight-text="searchText">{{item.muscleName}}</span>
             </md-autocomplete>
             <md-chip-template>
                 <span>
                     {{$chip.muscleName}}
-                    <!--<em>({{$chip.type}})</em>-->
                 </span>
             </md-chip-template>
         </md-chips>

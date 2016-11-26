@@ -40,7 +40,7 @@ var router = function (arg) {
         });
 
 
-    adminRouter.route('/bodypart')
+  /*  adminRouter.route('/bodypart')
         .post(function (req, res) {
             if (req.body) {
                 console.log(req.body);
@@ -55,7 +55,7 @@ var router = function (arg) {
                 if (req.body.muscles && req.body.muscles instanceof Array) {
                     req.body.muscles.forEach(function (muscle) {
                         console.log(muscle);
-                        var promise = muscleLogic.getMuscle(muscle);
+                        var promise = muscleLogic.getMuscleByID(muscle);
                         promiseArray.push(promise);
 
                         promise.then(function (result) {
@@ -67,7 +67,7 @@ var router = function (arg) {
                     });
                 } else {
                     res.status(400);
-                    res.send('Primary muscles should be a list');
+                    res.send('Muscles should be a list');
                     return;
                 }
 
@@ -105,6 +105,43 @@ var router = function (arg) {
             res.send('send information about the exercise you wish to create');
         });
 
+*/
+    
+    adminRouter.route('/bodypart')
+        .post(function (req, res) {
+            if (req.body) {
+                console.log(req.body);
+                if (!req.body.bodyPartName) {
+                    res.status(400);
+                    res.send('Please provide information about the body part you want to create');
+                    return;
+                }
+
+                if (req.body.muscles && req.body.muscles instanceof Array) {
+                    
+                     var bodyPart = new models.bodyPart(req.body);
+                        bodyPart.save(function (error) {
+                        if (error) {
+                            console.log(error);
+                            res.status(400);
+                            res.send('failed ' + error);
+                        } else {
+                            res.send({message:'you sent info ' + bodyPart});
+                        }
+                    });
+               
+                    return;
+                    
+                } else {
+                    res.status(400);
+                    res.send('Muscles should be a list');
+                    return;
+                }
+            }
+                
+            res.status('400');
+            res.send('send information about the exercise you wish to create');
+        });
 
 
     adminRouter.route('/exercise')

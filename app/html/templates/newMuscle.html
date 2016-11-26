@@ -1,6 +1,8 @@
-<div class="container-fluid">
+<div class="container-fluid edit-section">
     <h1 style="text-align: center">New Muscle</h1>
     <form name='new-muslce-form' ng-submit='createMuscle(newMuscle)'>
+        <br/>
+        <swp-messaging></swp-messaging>
         <br/>
         <input type='text' ng-model='newMuscle.muscleName' class='form-control' placeholder='Muscle Name...' />
         <br/>

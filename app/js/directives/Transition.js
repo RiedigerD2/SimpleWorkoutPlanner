@@ -1,5 +1,5 @@
 (function(){
-    var app = angular.module('simpleWorkoutPlanner');
+    var app = angular.module('SimpleWorkoutPlanner');
     
     app.directive('transition',function (){
         return {
@@ -9,7 +9,5 @@
             },
             link: function() {}};
     });
-    
-    
     
 }());
