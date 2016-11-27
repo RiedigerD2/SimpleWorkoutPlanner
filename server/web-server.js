@@ -14,7 +14,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(express.static(rootPath + '/app'));
 
-app.get('/content/', events.getEvent);
+app.use(function (req, res, next) {
+    if (req.method === 'POST' || req.method === 'PUT') {
+        console.log("updating on " + req.baseUrl)
+    }
+    next()
+})
 app.use('/generator', generatorRouter)
 app.use('/admin', adminRouter);
 app.use('', rootRouter);

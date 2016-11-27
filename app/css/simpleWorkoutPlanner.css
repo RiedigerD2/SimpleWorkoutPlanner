@@ -1,0 +1,83 @@
+.edit-section {
+    position: fixed;
+    width: 40%;
+    left: 0;
+    top: 0;
+    height: 100%;
+    overflow-y: auto;
+    z-index: 1000;
+}
+
+.list-view {
+    margin-left: 40%;
+    width: 60%;
+    height: 100%;
+}
+
+.list-view .table-header {
+    position: fixed;
+    overflow: hidden;
+    height: 25%;
+    width: inherit;
+}
+
+.list-view .table-container {
+    position: fixed;
+    overflow-y: scroll;
+    height: 85%;
+    bottom: 0%;
+    width: inherit;
+}
+
+h1,
+tr,
+th,
+td {
+    margin: 0;
+    text-align: center;
+}
+
+.list-view h1 {
+    top: -20;
+}
+
+.table-header {
+    text-align: center;
+}
+
+tr:hover {
+    cursor: pointer;
+    background: #3c4148 !important;
+}
+
+tr:active {
+    background: #2e3338 !important;
+    border: blue
+}
+
+tr.selected {
+    background: #61666d !important;
+    /*Two colours for table*/
+    /*#353a41*/
+    /*#2e3338*/
+}
+
+html {
+    overflow: scroll;
+    overflow-x: hidden;
+    overflow: hidden;
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+    /* remove scrollbar space */
+    background: transparent;
+    /* optional: just make scrollbar invisible */
+}
+
+
+/* optional: show position indicator in red */
+
+::-webkit-scrollbar-thumb {
+    background: #333333;
+}

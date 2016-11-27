@@ -1,9 +1,9 @@
 <!doctype html>
-<html kendo-mobile-application ng-app='SimpleWorkoutPlanner'>
+<html ng-app='SimpleWorkoutPlanner'>
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Event Registration</title>
+<title>Simple Workout Planner</title>
 <link rel="stylesheet" href="/lib/ui-bootstrap/ui-bootstrap-csp.css" />
 <!--bower:css -->
 <link rel="stylesheet" href="lib/bower/angular-material/angular-material.css" />
@@ -16,7 +16,9 @@
 <!-- endinject -->
 
 <body ng-cloak>
-    <ng-view class="main container-fluids"></ng-view>
+    <div>
+        <ng-view class="main container-fluid"></ng-view>
+    </div>
 </body>
 
 <!-- bower:js -->
@@ -44,4 +46,5 @@
 <script src="js/services/messagingService.js"></script>
 <!-- endinject -->
 <script src="/lib/ui-bootstrap/ui-bootstrap-tpls.js"></script>
+
 </html>

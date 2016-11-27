@@ -10,37 +10,9 @@ var adminRouter = express.Router();
 var router = function (arg) {
 
 
-    adminRouter.route('/muscle')
-        .post(function (req, res) {
-            if (req.body) {
-                console.log(req.body);
-                if (!req.body.muscleName) {
-                    res.status(400);
-                    res.send('muslces have names use  field muscleName');
-                    return;
-                }
-                var newMuscle = new models.muscle({
-                    muscleName: req.body.muscleName
-                });
-                //newMuscle.name = request.body.name;
-                newMuscle.save(function (error) {
-                    if (error) {
-                        console.log(error);
-                        res.status(400);
-                        res.send('failed ' + error);
-                    } else {
-                        res.send('you sent info ' + req.body.muscleName);
-                    }
-                });
-
-                return;
-            }
-            res.status('400');
-            res.send('send info to uploade paramater muscleName');
-        });
 
 
-  /*  adminRouter.route('/bodypart')
+    /*  adminRouter.route('/bodypart')
         .post(function (req, res) {
             if (req.body) {
                 console.log(req.body);
@@ -106,7 +78,7 @@ var router = function (arg) {
         });
 
 */
-    
+
     adminRouter.route('/bodypart')
         .post(function (req, res) {
             if (req.body) {
@@ -118,27 +90,29 @@ var router = function (arg) {
                 }
 
                 if (req.body.muscles && req.body.muscles instanceof Array) {
-                    
-                     var bodyPart = new models.bodyPart(req.body);
-                        bodyPart.save(function (error) {
+
+                    var bodyPart = new models.bodyPart(req.body);
+                    bodyPart.save(function (error) {
                         if (error) {
                             console.log(error);
                             res.status(400);
                             res.send('failed ' + error);
                         } else {
-                            res.send({message:'you sent info ' + bodyPart});
+                            res.send({
+                                message: 'you sent info ' + bodyPart
+                            });
                         }
                     });
-               
+
                     return;
-                    
+
                 } else {
                     res.status(400);
                     res.send('Muscles should be a list');
                     return;
                 }
             }
-                
+
             res.status('400');
             res.send('send information about the exercise you wish to create');
         });

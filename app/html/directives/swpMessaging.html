@@ -1,10 +1,17 @@
 <div>
-    <div ng-repeat='error in messagingService.errorMessages()'>
-       <div class="alert alert-danger" role="alert">{{error.message}}</div>
+    <div ng-repeat='error in messages.errorMessages()'>
+        <div class="alert alert-danger" role="alert">
+            <span>{{error.message}}</span>
+            <span style="float: right" ng-click="messages.removeErrorMessage($index)">X</span>
+        </div>
     </div>
 
-    <div ng-repeat='error in messagingService.successMessages()'>
-       <div class="alert alert-success" role="alert">{{error.message}}</div>
+    <div ng-repeat='success in messages.successMessages()'>
+        <div class="alert alert-success" role="alert">
+            <span>{{success.message}}</span>
+            <span style="float: right" ng-click="messages.removeSuccessMessage($index)">X</span>
+            <!--class="glyphicon glyphicon-remove">-->
+        </div>
     </div>
 
 </div>

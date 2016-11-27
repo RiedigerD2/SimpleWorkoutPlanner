@@ -1,11 +1,38 @@
-<div class="container-fluid edit-section">
-    <h1 style="text-align: center">New Muscle</h1>
-    <form name='new-muslce-form' ng-submit='createMuscle(newMuscle)'>
+<div class="container-fluid edit-section well">
+    <div class="row">
+        <button type="button" class="btn btn-lg btn-success col-xs-2" ng-click="createNewMuscle()">New</button>
+
+        <h1 class=" col-xs-8" style="text-align: center">Edit Muscle</h1>
+        <button type="button" class="btn btn-lg btn-danger col-xs-2" ng-click="deleteMuscle(focusedMuscle)">Delete</button>
+    </div>
+    <!--ng-if="newMuscle._id"-->
+    <div class="row">
+        <form name='new-muslce-form' ng-submit='saveMuscle(focusedMuscle)'>
+            <br/>
+
+            <input type='text' ng-model='focusedMuscle.muscleName' class='form-control' placeholder='Muscle Name...' />
+            <br/>
+            <input type="submit" value="Save" class="btn btn-primary col-xs-offset-4 col-xs-4" style="text-align: center">
+        </form>
+    </div>
+    <div class="row">
+        <br/>
         <br/>
         <swp-messaging></swp-messaging>
-        <br/>
-        <input type='text' ng-model='newMuscle.muscleName' class='form-control' placeholder='Muscle Name...' />
-        <br/>
-        <input type="submit" class="btn btn-primary col-xs-offset-4 col-xs-4" style="text-align: center">
-    </form>
+    </div>
 </div>
+<div class="list-view">
+    <div class="table-header">
+        <div class="row">
+            <h1>Muscles</h1>
+        </div>
+    </div>
+    <div class="table-container">
+        <table class="table table-striped">
+            <tbody>
+                <tr ng-repeat="muscle in existingMuscles | orderBy :'muscleName'" ng-class="{selected: muscle===focusedMuscle}">
+                    <td ng-click="selectMuscle(muscle)">{{muscle.muscleName}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
