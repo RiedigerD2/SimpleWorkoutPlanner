@@ -4,7 +4,8 @@ var events = require('./server-controller');
 var app = express();
 var rootPath = path.normalize(__dirname + '/../');
 var bodyParser = require('body-parser');
-var rootRouter = require('./routes/rootRouter.js')();
+var muscleRouter = require('./routes/muscleRouter.js')();
+var bodyPartRouter = require('./routes/bodyPartRouter.js')();
 var generatorRouter = require('./routes/generatorRouter')();
 var adminRouter = require('./routes/adminRouter')();
 var mongoose = require('mongoose');
@@ -16,13 +17,15 @@ app.use(express.static(rootPath + '/app'));
 
 app.use(function (req, res, next) {
     if (req.method === 'POST' || req.method === 'PUT') {
-        console.log("updating on " + req.baseUrl)
+        console.log(req.originalUrl)
     }
     next()
 })
+
 app.use('/generator', generatorRouter)
 app.use('/admin', adminRouter);
-app.use('', rootRouter);
+app.use('/muscle', muscleRouter);
+app.use('/bodypart', bodyPartRouter);
 
 mongoose.connect('mongodb://dbUser:y#f!hAAN7nYV@ds035766.mlab.com:35766/simpleworkoutplannerdb')
 var listeningPort = process.env.PORT || 5000;

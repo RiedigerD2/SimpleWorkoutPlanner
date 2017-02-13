@@ -4,14 +4,16 @@
     left: 0;
     top: 0;
     height: 100%;
+    overflow-x: hidden;
     overflow-y: auto;
-    z-index: 1000;
+    z-index: 2;
 }
 
 .list-view {
     margin-left: 40%;
     width: 60%;
     height: 100%;
+    margin-top: 0;
 }
 
 .list-view .table-header {
@@ -24,6 +26,7 @@
 .list-view .table-container {
     position: fixed;
     overflow-y: scroll;
+    margin: 0;
     height: 85%;
     bottom: 0%;
     width: inherit;
@@ -45,15 +48,16 @@ td {
     text-align: center;
 }
 
+thead tr {
+    background: #1A1B1B;
+}
+
 tr:hover {
     cursor: pointer;
     background: #3c4148 !important;
 }
 
-tr:active {
-    background: #2e3338 !important;
-    border: blue
-}
+thead tr:hover {}
 
 tr.selected {
     background: #61666d !important;

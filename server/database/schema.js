@@ -21,11 +21,10 @@ module.exports.bodyPartSchema = new Schema({
         required: [true, 'Provide a bodyPartName for this body Part.'],
         unique: [true, 'Sorry we already have that body part.']
     },
-    muscles: {
-        type: [mongoose.Schema.Types.ObjectId ],
+    muscles: [{
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'muscle'
-        
-    }
+    }]
 });
 
 

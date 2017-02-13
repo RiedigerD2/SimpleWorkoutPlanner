@@ -1,23 +1,57 @@
-<div class="container-fluid">
-    <h1 style="text-align: center">New Body Part</h1>
-    <form name='new-muslce-form' ng-submit='createBodyPart(newBodyPart)'>
-        <swp-messaging></swp-messaging>
-        <br/>
-        <br/>
-        <input type='text' ng-model='newBodyPart.bodyPartName' class='form-control' placeholder='Body Part...' />
-        <!--md-transform-chip="ctrl.transformChip($chip)" -->
-        <md-chips ng-model="selectedMuscles" md-autocomplete-snap md-require-match="true" >
-            <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText" md-items="item in getMuscles(searchText)" md-item-text="item.muscleName" placeholder="Search for muscles..." >
-                <span md-highlight-text="searchText">{{item.muscleName}}</span>
-            </md-autocomplete>
-            <md-chip-template>
-                <span>
+<div class="container-fluid edit-section well">
+    <div class="row">
+        <button type="button" class="btn btn-lg btn-success col-xs-2" ng-click="listManager.Create()">New</button>
+        <h1 class=" col-xs-8" style="text-align: center">Body Part</h1>
+        <button type="button" class="btn btn-lg btn-danger col-xs-2" ng-click="deleteBodyPart(focusedBodyPart)">Delete</button>
+    </div>
+    <Div class="row">
+        <form name='new-body-part-form' ng-submit='Save(listManager.focusedObject)'>
+            <br/>
+            <input type='text' ng-model='listManager.focusedObject.bodyPartName' class='form-control' placeholder='Body Part...' />
+            <!--md-transform-chip="ctrl.transformChip($chip)" -->
+            <md-chips ng-model="listManager.focusedObject.muscles" md-autocomplete-snap md-require-match="true">
+                <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText" md-items="item in getMuscles(searchText)" md-item-text="item.muscleName" placeholder="Search for muscles..." secondary-placeholder="continue...">
+                    <span md-highlight-text="searchText">{{item.muscleName}}</span>
+                </md-autocomplete>
+                <md-chip-template>
+                    <span>
                     {{$chip.muscleName}}
                 </span>
-            </md-chip-template>
-        </md-chips>
-        </br>
-
-        <input type="submit" class="btn btn-primary col-xs-offset-4 col-xs-4" style="text-align: center">
-        </forms>
+                </md-chip-template>
+            </md-chips>
+            </br>
+            <input type="submit" class="btn btn-primary col-xs-offset-4 col-xs-4" style="text-align: center">
+            </forms>
+    </div>
+    <Div class="row">
+        <br/>
+        <swp-messaging></swp-messaging>
+    </Div>
+</div>
+<div class="list-view">
+    <div class="table-header row" style='margin-top: 0'>
+        <div class="row" style='margin-top: 0'>
+            <h1>Body Parts</h1>
+        </div>
+    </div>
+    <div class="table-container row">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <td>
+                        <span>Name</span>
+                    </td>
+                    <td>
+                        <span>Muscles</span>
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="bodyPart in listManager.displayList | orderBy :'bodyPartName'" ng-class="{selected: $index===listManager.getFocusedIndex()}" ng-click="listManager.Select(bodyPart,$index)">
+                    <td>{{bodyPart.bodyPartName}}</td>
+                    <td>{{bodyPart.muscles.length}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>

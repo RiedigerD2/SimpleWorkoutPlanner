@@ -1,16 +1,16 @@
 <div class="container-fluid edit-section well">
     <div class="row">
-        <button type="button" class="btn btn-lg btn-success col-xs-2" ng-click="createNewMuscle()">New</button>
+        <button type="button" class="btn btn-lg btn-success col-xs-2" ng-click="listManager.Create()">New</button>
 
         <h1 class=" col-xs-8" style="text-align: center">Edit Muscle</h1>
-        <button type="button" class="btn btn-lg btn-danger col-xs-2" ng-click="deleteMuscle(focusedMuscle)">Delete</button>
+        <button type="button" class="btn btn-lg btn-danger col-xs-2" ng-click="listManager.Delete(listManager.focusedObject)">Delete</button>
     </div>
     <!--ng-if="newMuscle._id"-->
     <div class="row">
-        <form name='new-muslce-form' ng-submit='saveMuscle(focusedMuscle)'>
+        <form name='new-muslce-form' ng-submit='Save(listManager.focusedObject)'>
             <br/>
 
-            <input type='text' ng-model='focusedMuscle.muscleName' class='form-control' placeholder='Muscle Name...' />
+            <input type='text' ng-model='listManager.focusedObject.muscleName' class='form-control' placeholder='Muscle Name...' />
             <br/>
             <input type="submit" value="Save" class="btn btn-primary col-xs-offset-4 col-xs-4" style="text-align: center">
         </form>
@@ -30,9 +30,10 @@
     <div class="table-container">
         <table class="table table-striped">
             <tbody>
-                <tr ng-repeat="muscle in existingMuscles | orderBy :'muscleName'" ng-class="{selected: muscle===focusedMuscle}">
-                    <td ng-click="selectMuscle(muscle)">{{muscle.muscleName}}</td>
+                <tr ng-repeat="muscle in listManager.displayList | orderBy :'muscleName'" ng-class="{selected: $index===listManager.getFocusedIndex()}">
+                    <td ng-click="listManager.Select(muscle,$index)">{{muscle.muscleName}}</td>
                 </tr>
             </tbody>
         </table>
     </div>
+</div>

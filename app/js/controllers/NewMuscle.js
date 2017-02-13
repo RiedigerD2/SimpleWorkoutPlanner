@@ -1,65 +1,51 @@
-(function () {
+(function() {
     var app = angular.module('SimpleWorkoutPlanner');
 
 
-    var NewMuscleController = function ($scope, $log, admin, general) {
+    var NewMuscleController = function($scope, $log, admin, general, listManagment) {
 
-        $scope.focusedMuscle = {};
 
-        $scope.saveMuscle = function (muscle) {
-            var result;
+        function _GetMuscles() {
+            return general.getMuscles();
+        }
+
+        function _createEmptyMuscle() {
+            return {};
+        }
+
+        $scope.Save = function(muscle) {
             if (!muscle || !muscle.muscleName) {
                 return;
             }
-            if (muscle._id) {
-                result = admin.updateMuscle(muscle).then(function (savedMuscle) {
-                    $scope.focusedMuscle = {};
-                });
-            } else {
-                result = admin.addMuscle(muscle).then(function () {
-                    $scope.focusedMuscle = {};
-                });
-                _GetMuscles();
-            };
-
-            result.then(function (savedMuscle) {
-                $scope.focusedMuscle = savedMuscle;
-            });
+            //todo include validation calls in list manager
+            $scope.listManager.Save();
         };
 
-        $scope.selectMuscle = function (muscle) {
-            $scope.focusedMuscle = muscle;
-        };
-
-        $scope.createNewMuscle = function () {
-            $scope.focusedMuscle = {};
-        };
-
-        $scope.deleteMuscle = function (muscle) {
-
-            admin.deleteMuscle(muscle).then(function () {
-                $log.log('Calling then in controller');
-
-                //_GetMuscles();
-                var index = $scope.existingMuscles.indexOf(muscle);
-                $scope.existingMuscles.splice(index, 1);
+        var _saveNewMuscle = function(muscle) {
+            return admin.addMuscle(muscle).then(function() {
                 $scope.focusedMuscle = {};
-            }).catch(function () {
-
-
             });
-        }
+        };
 
-        function _GetMuscles() {
-            general.getAllMuscles().then(function (muscles) {
-                $scope.existingMuscles = muscles;
+        var _updateMuscle = function(muscle) {
+            return admin.updateMuscle(muscle).then(function(savedMuscle) {
+                $scope.focusedMuscle = {};
             });
-        }
-        _GetMuscles();
+        };
+
+
+
+        var _deleteMuscle = function(muscle) {
+            return admin.deleteMuscle(muscle);
+        };
+
+        $scope.listManager = listManagment.getListManager(_GetMuscles, _createEmptyMuscle, _saveNewMuscle, _updateMuscle, _deleteMuscle);
+
     };
 
-    app.controller('NewMuscleController', ['$scope', '$log', 'admin', 'general',
-        NewMuscleController]);
+    app.controller('NewMuscleController', ['$scope', '$log', 'admin', 'general', 'listManagment',
+        NewMuscleController
+    ]);
 
 
 

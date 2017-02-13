@@ -1,38 +1,48 @@
-(function () {
+(function() {
     var planner = angular.module('SimpleWorkoutPlanner');
-    planner.factory('general', ['$http', '$log', '$resource', function ($http, $log, $resource) {
+    planner.factory('general', ['$http', '$log', '$resource', function($http, $log, $resource) {
         var baseAddress = '/';
         var resource = $resource(baseAddress, null, {
             getMuscle: {
                 method: 'get',
-                url: '/muscle/:muscleName/single'
-
-            },
-            getMuscleList: {
-                method: 'get',
-                url: '/muscle/:muscleName',
-                isArray: true
+                url: '/muscle/:muscleName'
             },
             getMuscles: {
                 method: 'get',
                 url: '/muscle',
                 isArray: true
+            },
+            getBodyParts: {
+                method: 'get',
+                url: '/bodypart',
+                isArray: true
+            },
+            getBodyPart: {
+                method: 'get',
+                url: '/bodypart/:id'
             }
-            /*,getSingleBodyPart: {
-                            method: 'post',
-                            url: baseAddress + '/bodypart/{id}'
-                        },*/
         });
         return {
-            getMuscleList: function (muscleName) {
-                return resource.getMuscleList({
-                    muscleName: muscleName
-                }).$promise;
-
+            getMuscles: function(muscleName) {
+                var argument = null;
+                if (muscleName) {
+                    argument = {
+                        name: muscleName
+                    };
+                }
+                return resource.getMuscles(argument).$promise;
             },
-            getAllMuscles: function () {
-                return resource.getMuscles().$promise;
+            getBodyParts: function() {
+                return resource.getBodyParts().$promise;
+            },
+            getBodyPart: function(bodyPart) {
+                var urlArguments = {};
+                if (bodyPart && bodyPart._id) {
+                    urlArguments = { id: bodyPart._id };
+                }
+                return resource.getBodyPart(urlArguments).$promise;
             }
+
         };
     }]);
 }());

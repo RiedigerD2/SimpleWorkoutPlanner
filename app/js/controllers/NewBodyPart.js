@@ -1,55 +1,59 @@
-(function () {
+(function() {
     var app = angular.module('SimpleWorkoutPlanner');
 
 
 
-    var NewBodyPartController = function ($scope, $log, $mdToast, general, admin) {
+    var NewBodyPartController = function($scope, $log, general, admin, listManagment) {
 
+        function _getBodyParts() {
+            return general.getBodyParts();
+        }
 
-        $scope.selectedMuscles = [];
+        function _createNewBodyPart() {
+            return {
+                muscles: []
+            };
+        }
 
-        $scope.getMuscles = function (muscleName) {
-            return general.getMuscleList(muscleName).then(function (arg) {
-                return arg;
-            }).catch(function () {
-
-            });
+        var deleteBodyPart = function(bodyPart) {
+            return admin.deleteBodyPart(bodyPart);
         };
-        
-        
-        $scope.createBodyPart = function (bodyPart) {
-            
-            bodyPart.muscles = $scope.selectedMuscles.map(function (muscle) {
-                return muscle._id;
-            });
-            $log.log(bodyPart);
-            admin.addBodyPart(bodyPart).then(function (result) {
-               
-                $mdToast.show(
-                $mdToast.simple()
-                    .textContent('Saved ' + bodyPart.bodyPartName)
-                    .position( 'top right')
-                    .hideDelay(4000)
-                );
-                $scope.newBodyPart={};
-                $scope.selectedMuscles=[];
-            }).catch(function(error){
-                $log.log(error);
-                $mdToast.show(
-                $mdToast.simple()
-                    .textContent('Error '+ error)
-                    .position( 'top right' )
-                    .hideDelay(5000)
-                    .theme('md-warn')
-                );
-            });
+
+        function _saveNewBodyPart(bodyPart) {
+            return admin.addBodyPart(bodyPart);
+        }
+
+        function _updateBodyPart(bodyPart) {
+            return admin.updateBodyPart(bodyPart);
+        }
+
+        function _getFullBodyPart(bodyPart) {
+            return general.getBodyPart(bodyPart);
+        }
+
+        $scope.listManager = listManagment.getListManager(_getBodyParts, _createNewBodyPart, _saveNewBodyPart, _updateBodyPart, deleteBodyPart, _getFullBodyPart);
+
+        //Actual unique behaviour code
+        $scope.Save = function(bodyPart) {
+            if (!bodyPart || !bodyPart.bodyPartName || bodyPart.muscles.length === 0) {
+                return;
+            }
+            $scope.listManager.Save();
         };
+
+        $scope.getMuscles = function(muscleName) {
+            return general.getMuscles(muscleName)
+                .then(function(muscles) {
+                    return muscles;
+                });
+        };
+
+
+
     };
-
-
-
-    app.controller('NewBodyPartController', ['$scope', '$log','$mdToast', 'general', 'admin',
-        NewBodyPartController]);
+    app.controller('NewBodyPartController', ['$scope', '$log', 'general', 'admin', 'listManagment',
+        NewBodyPartController
+    ]);
 
 
 
