@@ -1,46 +1,42 @@
 (function() {
     var planner = angular.module('SimpleWorkoutPlanner');
     planner.factory('messagingService', ['$log', function($log) {
-        var errorMessages = [];
-        var successMessages = [];
+        var messages = [];
         var publicFunctions = {};
 
         publicFunctions.addSuccess = function(message) {
-            errorMessages = [];
-            successMessages.unshift({
-                message: message
-            });
+            var newMessage = { text: message, success: true };
+            messages.unshift(newMessage);
         };
 
         publicFunctions.addError = function(message) {
-
-            errorMessages.unshift({
-                message: message
-            });
+            var newMessage = { text: message, error: true }
+            messages.unshift(newMessage);
         };
 
         publicFunctions.errorMessages = function() {
-            return errorMessages;
+            return messages.filter(message => {
+                return message.error;
+            });
         };
 
         publicFunctions.successMessages = function() {
-            return successMessages;
+            return messages.filter(message => {
+                return message.success;
+            });
         };
 
-        publicFunctions.removeErrorMessage = function(index) {
-            $log.log('index remove ' + index);
-            errorMessages.splice(index, 1);
-        };
-
-        publicFunctions.removeSuccessMessage = function(index) {
-            $log.log('index remove ' + index);
-            successMessages.splice(index, 1);
+        publicFunctions.removeMessage = function(index) {
+            messages.splice(index, 1);
         };
 
         publicFunctions.clearMessages = function() {
-            successMessages = [];
-            errorMessages = [];
+            messages = [];
         };
+
+        publicFunctions.all = function() {
+            return messages;
+        }
 
         return publicFunctions;
     }]);
