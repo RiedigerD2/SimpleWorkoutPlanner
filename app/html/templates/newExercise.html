@@ -1,0 +1,73 @@
+<div class="container-fluid edit-section well">
+    <div class="row">
+        <button type="button" class="btn btn-lg btn-success col-xs-2" ng-click="listManager.Create()">New</button>
+        <h1 class=" col-xs-8" style="text-align: center">Body Part</h1>
+        <button type="button" class="btn btn-lg btn-danger col-xs-2" ng-click="deleteExercise(focusedExercise)">Delete</button>
+    </div>
+    <Div class="row">
+        <form name='new-exercise-form' ng-submit='Save(listManager.focusedObject)'>
+            <br/>
+            <input type='text' ng-model='listManager.focusedObject.exerciseName' class='form-control' placeholder='Body Part...' />
+            <br/>
+            <!--md-transform-chip="ctrl.transformChip($chip)" -->
+            <md-chips ng-model="listManager.focusedObject.primaryMuscles" md-autocomplete-snap md-require-match="true">
+                <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText" md-items="item in getMuscles(searchText)" md-item-text="item.muscleName" placeholder="Search for primary muscles..." secondary-placeholder="continue...">
+                    <span md-highlight-text="searchText">{{item.muscleName}}</span>
+                </md-autocomplete>
+                <md-chip-template>
+                    <span>
+                    {{$chip.muscleName}}
+                </span>
+                </md-chip-template>
+            </md-chips>
+            </br>
+            <md-chips ng-model="listManager.focusedObject.secondaryMuscles" md-autocomplete-snap md-require-match="true">
+                <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText" md-items="item in getMuscles(searchText)" md-item-text="item.muscleName" placeholder="Search for secondary muscles..." secondary-placeholder="continue...">
+                    <span md-highlight-text="searchText">{{item.muscleName}}</span>
+                </md-autocomplete>
+                <md-chip-template>
+                    <span>
+                    {{$chip.muscleName}}
+                </span>
+                </md-chip-template>
+            </md-chips>
+            </br>
+            <input type="submit" value="Save" class="btn btn-primary col-xs-offset-4 col-xs-4" style="text-align: center">
+        </form>
+    </div>
+    <div class="row">
+        <br/>
+        <swp-messaging></swp-messaging>
+    </div>
+</div>
+<div class="list-view">
+    <div class="table-header row" style='margin-top: 0'>
+        <div class="row" style='margin-top: 0'>
+            <h1>Exercises</h1>
+        </div>
+    </div>
+    <div class="table-container row">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <td>
+                        <span>Name</span>
+                    </td>
+                    <td>
+                        <span>Primary Muscles</span>
+                    </td>
+                    <td>
+                        <span>Secondary Muscles</span>
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="exercise in listManager.displayList | orderBy :'exerciseName'" ng-class="{selected: $index===listManager.getFocusedIndex()}" ng-click="listManager.Select(exercise,$index)">
+                    <td>{{exercise.exerciseName}}</td>
+                    <td>{{exercise.primaryMuscles.length}}</td>
+                    <td>{{exercise.secondaryMuscles.length}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

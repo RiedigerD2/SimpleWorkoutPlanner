@@ -3,7 +3,7 @@
 
 
 
-    var NewBodyPartController = function($scope, $log, general, admin, listManagment) {
+    var NewBodyPartController = function($scope, $log, general, admin, listManagment, messagingService) {
 
         function _getBodyParts() {
             return general.getBodyParts();
@@ -36,6 +36,7 @@
         //Actual unique behaviour code
         $scope.Save = function(bodyPart) {
             if (!bodyPart || !bodyPart.bodyPartName || bodyPart.muscles.length === 0) {
+                messagingService.addError('Bodypart invalid.');
                 return;
             }
             $scope.listManager.Save();
@@ -51,7 +52,7 @@
 
 
     };
-    app.controller('NewBodyPartController', ['$scope', '$log', 'general', 'admin', 'listManagment',
+    app.controller('NewBodyPartController', ['$scope', '$log', 'general', 'admin', 'listManagment', 'messagingService',
         NewBodyPartController
     ]);
 

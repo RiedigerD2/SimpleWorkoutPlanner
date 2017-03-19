@@ -4,6 +4,7 @@
   "description": "Plan Workouts",
   "main": "app.js",
   "dependencies": {
+    "bluebird": "^3.5.0",
     "body-parser": "^1.15.2",
     "express": "^4.13.4",
     "mongoose": "^4.6.1"

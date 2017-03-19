@@ -9,6 +9,7 @@
             <br/>
             <input type='text' ng-model='listManager.focusedObject.bodyPartName' class='form-control' placeholder='Body Part...' />
             <!--md-transform-chip="ctrl.transformChip($chip)" -->
+            <br/>
             <md-chips ng-model="listManager.focusedObject.muscles" md-autocomplete-snap md-require-match="true">
                 <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText" md-items="item in getMuscles(searchText)" md-item-text="item.muscleName" placeholder="Search for muscles..." secondary-placeholder="continue...">
                     <span md-highlight-text="searchText">{{item.muscleName}}</span>
@@ -20,13 +21,13 @@
                 </md-chip-template>
             </md-chips>
             </br>
-            <input type="submit" class="btn btn-primary col-xs-offset-4 col-xs-4" style="text-align: center">
-            </forms>
+            <input type="submit" value="Save" class="btn btn-primary col-xs-offset-4 col-xs-4" style="text-align: center">
+        </form>
     </div>
-    <Div class="row">
+    <div class="row">
         <br/>
         <swp-messaging></swp-messaging>
-    </Div>
+    </div>
 </div>
 <div class="list-view">
     <div class="table-header row" style='margin-top: 0'>

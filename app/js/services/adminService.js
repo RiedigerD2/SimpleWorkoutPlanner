@@ -32,8 +32,17 @@
             },
             addExercise: {
                 method: 'post',
-                url: baseAddress + '/exercise'
-            }
+                url: '/exercise'
+            },
+            updateExercise: {
+                method: 'put',
+                url: '/exercise/:exerciseId'
+
+            },
+            deleteExercise: {
+                method: 'delete',
+                url: '/exercise/:exerciseId'
+            },
         });
         return {
             addMuscle: function(muscleInfo) {
@@ -96,6 +105,38 @@
                 }).catch(function(error) {
                     $log.error(error);
                     messagingService.addError('Deleteing bodyPart  failed.');
+                    throw error;
+                });
+            },
+            addExercise: function(exerciseInfo) {
+                return adminCalls.addExercise(null, exerciseInfo).$promise.then(function(result) {
+                    messagingService.addSuccess('Saved Exercise "' + exerciseInfo.exerciseName + '.');
+                    return result;
+                }).catch(function(error) {
+                    messagingService.addError('Adding exercise "' + exerciseInfo.exerciseName + '" failed.');
+                    throw error;
+                });
+            },
+            updateExercise: function(exerciseInfo) {
+                return adminCalls.updateExercise({
+                    exerciseId: exerciseInfo._id
+                }, exerciseInfo).$promise.then(function(result) {
+                    messagingService.addSuccess('Updated Exercise "' + exerciseInfo.exerciseName + '.');
+                    return result;
+                }).catch(function(error) {
+                    messagingService.addError('Updating exercise "' + exerciseInfo.exerciseName + '" failed.');
+                    throw error;
+                });
+            },
+            deleteExercise: function(exerciseInfo) {
+                return adminCalls.deleteExercise({
+                    exerciseId: exerciseInfo._id
+                }).$promise.then(function(result) {
+                    messagingService.addSuccess('Saved Exercise "' + exerciseInfo.exerciseName + '.');
+                    return result;
+                }).catch(function(error) {
+                    $log.error(error);
+                    messagingService.addError('Deleteing exercise  failed.');
                     throw error;
                 });
             }

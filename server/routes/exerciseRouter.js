@@ -2,27 +2,21 @@ var express = require('express');
 var router = express.Router();
 
 var models = require('../database/server.model.js');
-var bodyPartLogic = require('../buisnessLogic/bodyPart.js');
+var exerciseLogic = require('../buisnessLogic/exercise.js');
 
 
-var routs = function(arg) {
-
-
-
-
+var routes = function(arg) {
 
     router.route('/').get(function(req, res) {
         if (req.query.name) {
-            console.log('Query Name');
-            bodyPartLogic.getBodyPartByName(req.query.name).then(function(result) {
+            exerciseLogic.getExerciseByName(req.query.name).then(function(result) {
                 res.send(result);
             }).catch(function(error) {
                 res.status(400);
                 res.send(error);
             });
         } else {
-            console.log('All body parts');
-            bodyPartLogic.getAllBodyParts().then(function(result) {
+            exerciseLogic.getAllExercises().then(function(result) {
                 res.send(result);
             }).catch(function(error) {
                 res.status(400);
@@ -32,70 +26,81 @@ var routs = function(arg) {
     }).post(function(req, res) {
         if (req.body) {
             console.log(req.body);
-            if (!req.body.bodyPartName) {
+            if (!req.body.exerciseName) {
                 res.status(400);
-                res.send('Body parts have names use  field bodyPartName');
+                res.send('Exercises have names use  field exerciseName');
                 return;
             }
-            var newBodyPart = new models.bodyPart(req.body);
-            newBodyPart.muscles = req.body.muscles.map(function(muscle) {
+            var newExercise = new models.exercise(req.body);
+            newExercise.primaryMuscles = req.body.primaryMuscles.map(function(muscle) {
+                if (muscle._id)
+                    return muscle._id;
+                return muslce;
+            });
+
+            newExercise.secondaryMuscles = req.body.secondaryMuscles.map(function(muscle) {
                 if (muscle._id)
                     return muscle._id;
                 return muslce;
             });
             //newMuscle.name = request.body.name;
-            newBodyPart.save(function(error) {
+            newExercise.save(function(error) {
                 if (error) {
                     console.log(error);
                     res.status(400);
                     res.send('failed ' + error);
                 } else {
-                    res.send(newBodyPart);
+                    res.send(newExercise);
                 }
             });
 
             return;
         }
         res.status('400');
-        res.send('send info to uploade paramater muscleName');
+        res.send('send info to upload paramater exerciseName');
     });
 
-    router.use('/:bodyPartId', function(req, res, next) {
-        bodyPartLogic.getBodyPartById(req.params.bodyPartId).then(
-            function(bodyPart) {
-                console.log(bodyPart);
-                req.bodyPart = bodyPart;
+    router.use('/:exerciseId', function(req, res, next) {
+        exerciseLogic.getExerciseById(req.params.exerciseId).then(
+            function(exercise) {
+                req.exercise = exercise;
                 next();
             }).catch(function(error) {
             console.error(error);
             res.status(404);
-            res.send('Could not find bodyPart');
+            res.send('Could not find exercise');
         });
 
     });
 
-    router.route('/:bodyPartId').get(function(req, res) {
-        res.send(req.bodyPart);
+    router.route('/:exerciseId').get(function(req, res) {
+        res.send(req.exercise);
     }).put(function(req, res) {
         if (req.body) {
-            if (!req.body.bodyPartName) {
+            if (!req.body.exerciseName) {
                 res.status(400);
-                res.send('body parts have names use  field muscleName');
+                res.send('exercises have names use  field muscleName');
                 return;
             }
-            if (req.params.bodyPartId !== req.body._id) {
+            if (req.params.exerciseId !== req.body._id) {
                 res.status(400);
                 res.send('updating infromation was incorrect');
             }
 
-            var bodyPart = req.bodyPart;
-            bodyPart.bodyPartName = req.body.bodyPartName;
-            bodyPart.muscles = req.body.muscles.map(function(muscle) {
+            var exercise = req.exercise;
+            exercise.exerciseName = req.body.exerciseName;
+            exercise.primaryMuscles = req.body.primaryMuscles.map(function(muscle) {
                 if (muscle._id)
                     return muscle._id;
                 return muslce;
             });
-            bodyPart.save().then(function(result) {
+
+            exercise.secondaryMuscles = req.body.secondaryMuscles.map(function(muscle) {
+                if (muscle._id)
+                    return muscle._id;
+                return muslce;
+            });
+            exercise.save().then(function(result) {
                 res.status(201)
                 res.send(result);
             }).catch(function(error) {
@@ -105,16 +110,16 @@ var routs = function(arg) {
             return;
         }
         res.status('400');
-        res.send('send info to uploade paramater muscleName');
+        res.send('send info to upload paramater exerciseName');
     }).delete(function(req, res) {
-        if (!req.bodyPart) {
+        if (!req.exercise) {
             res.status(404);
             res.send('Could not find');
             return
         }
-        var bodyPart = req.bodyPart;
+        var exercise = req.exercise;
 
-        bodyPart.remove().then(function() {
+        exercise.remove().then(function() {
             res.send();
         }).catch(function() {
             res.status(500);
@@ -127,4 +132,4 @@ var routs = function(arg) {
     return router;
 };
 
-module.exports = routs;
+module.exports = routes;

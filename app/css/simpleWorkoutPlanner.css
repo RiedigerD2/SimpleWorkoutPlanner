@@ -57,7 +57,8 @@ tr:hover {
     background: #3c4148 !important;
 }
 
-thead tr:hover {}
+
+/*thead tr:hover {}*/
 
 tr.selected {
     background: #61666d !important;

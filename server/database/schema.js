@@ -34,13 +34,15 @@ var exerciseSchema = new Schema({
         required: [true, 'Provide an exerciseName for this muscle.'],
         unique: [true, 'Sorry we already have that exercise.']
     },
-    primaryMuscles: {
-        type: [muscleSchema],
+    primaryMuscles: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'muscle',
         required: [true, 'Provide the primary muscles for the exercise']
-    },
-    secondaryMuscles: {
-        type: [muscleSchema]
-    }
+    }],
+    secondaryMuscles: [{
+        type: [mongoose.Schema.Types.ObjectId],
+        ref: 'muscle'
+    }]
 });
 
 module.exports.excerciseSchema = exerciseSchema;

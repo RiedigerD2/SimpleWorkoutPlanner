@@ -20,6 +20,15 @@
             getBodyPart: {
                 method: 'get',
                 url: '/bodypart/:id'
+            },
+            getExercises: {
+                method: 'get',
+                url: '/exercise',
+                isArray: true
+            },
+            getExercise: {
+                method: 'get',
+                url: '/exercise/:id'
             }
         });
         return {
@@ -41,6 +50,16 @@
                     urlArguments = { id: bodyPart._id };
                 }
                 return resource.getBodyPart(urlArguments).$promise;
+            },
+            getExercises: function() {
+                return resource.getExercises().$promise;
+            },
+            getExercise: function(exercise) {
+                var urlArguments = {};
+                if (exercise && exercise._id) {
+                    urlArguments = { id: exercise._id };
+                }
+                return resource.getExercise(urlArguments).$promise;
             }
 
         };
