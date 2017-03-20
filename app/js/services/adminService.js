@@ -1,52 +1,16 @@
 (function() {
     var planner = angular.module('SimpleWorkoutPlanner');
     planner.factory('admin', ['$http', '$log', '$resource', 'messagingService', function($http, $log, $resource, messagingService) {
-        var baseAddress = '/admin';
-        var adminCalls = $resource(baseAddress, null, {
-            addMuscle: {
-                method: 'post',
-                url: '/muscle'
 
-            },
-            updateMuscle: {
-                method: 'put',
-                url: '/muscle/:muscleId'
+        let putMethod = { put: { method: 'put' } };
 
-            },
-            deleteMuscle: {
-                method: 'delete',
-                url: '/muscle/:muscleId'
-            },
-            addBodyPart: {
-                method: 'post',
-                url: '/bodypart'
-            },
-            updateBodyPart: {
-                method: 'put',
-                url: '/bodypart/:bodyPartId'
+        let muscleResource = $resource('/muscle/:muscleId', null, putMethod);
+        let bodyPartResource = $resource('/bodypart/:bodyPartId', null, putMethod);
+        let exerciseResource = $resource('/exercise/:exerciseId', null, putMethod);
 
-            },
-            deleteBodyPart: {
-                method: 'delete',
-                url: '/bodypart/:bodyPartId'
-            },
-            addExercise: {
-                method: 'post',
-                url: '/exercise'
-            },
-            updateExercise: {
-                method: 'put',
-                url: '/exercise/:exerciseId'
-
-            },
-            deleteExercise: {
-                method: 'delete',
-                url: '/exercise/:exerciseId'
-            },
-        });
         return {
             addMuscle: function(muscleInfo) {
-                return adminCalls.addMuscle(null, muscleInfo).$promise.then(function(result) {
+                return muscleResource.post(null, muscleInfo).$promise.then(function(result) {
                     messagingService.addSuccess('Created muscle "' + muscleInfo.muscleName + '".');
                     return result;
                 }).catch(function(error) {
@@ -55,7 +19,7 @@
                 });
             },
             updateMuscle: function(muscleInfo) {
-                return adminCalls.updateMuscle({
+                return muscleResource.put({
                     muscleId: muscleInfo._id
                 }, muscleInfo).$promise.then(function(result) {
                     messagingService.addSuccess('Updated muscle "' + muscleInfo.muscleName + '.');
@@ -66,7 +30,7 @@
                 });
             },
             deleteMuscle: function(muscleinfo) {
-                return adminCalls.deleteMuscle({
+                return muscleResource.delete({
                     muscleId: muscleinfo._id
                 }).$promise.then(function(result) {
                     messagingService.addSuccess('Deleted muscle.');
@@ -77,7 +41,7 @@
                 });
             },
             addBodyPart: function(bodyPartInfo) {
-                return adminCalls.addBodyPart(null, bodyPartInfo).$promise.then(function(result) {
+                return bodyPartResource.post(null, bodyPartInfo).$promise.then(function(result) {
                     messagingService.addSuccess('Saved Body Part "' + bodyPartInfo.bodyPartName + '.');
                     return result;
                 }).catch(function(error) {
@@ -86,7 +50,7 @@
                 });
             },
             updateBodyPart: function(bodyPartInfo) {
-                return adminCalls.updateBodyPart({
+                return bodyPartResource.put({
                     bodyPartId: bodyPartInfo._id
                 }, bodyPartInfo).$promise.then(function(result) {
                     messagingService.addSuccess('Updated Body Part "' + bodyPartInfo.bodyPartName + '.');
@@ -97,7 +61,7 @@
                 });
             },
             deleteBodyPart: function(bodyPartInfo) {
-                return adminCalls.deleteBodyPart({
+                return bodyPartResource.delete({
                     bodyPartId: bodyPartInfo._id
                 }).$promise.then(function(result) {
                     messagingService.addSuccess('Saved Body Part "' + bodyPartInfo.bodyPartName + '.');
@@ -109,7 +73,7 @@
                 });
             },
             addExercise: function(exerciseInfo) {
-                return adminCalls.addExercise(null, exerciseInfo).$promise.then(function(result) {
+                return exerciseResource.post(null, exerciseInfo).$promise.then(function(result) {
                     messagingService.addSuccess('Saved Exercise "' + exerciseInfo.exerciseName + '.');
                     return result;
                 }).catch(function(error) {
@@ -118,7 +82,7 @@
                 });
             },
             updateExercise: function(exerciseInfo) {
-                return adminCalls.updateExercise({
+                return exerciseResource.put({
                     exerciseId: exerciseInfo._id
                 }, exerciseInfo).$promise.then(function(result) {
                     messagingService.addSuccess('Updated Exercise "' + exerciseInfo.exerciseName + '.');
@@ -129,7 +93,7 @@
                 });
             },
             deleteExercise: function(exerciseInfo) {
-                return adminCalls.deleteExercise({
+                return exerciseResource.delete({
                     exerciseId: exerciseInfo._id
                 }).$promise.then(function(result) {
                     messagingService.addSuccess('Saved Exercise "' + exerciseInfo.exerciseName + '.');
