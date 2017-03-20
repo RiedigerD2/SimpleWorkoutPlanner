@@ -5,7 +5,8 @@
             "request": "launch",
             "name": "Launch Program",
             "program": "${workspaceRoot}/server/web-server.js",
-            "cwd": "${workspaceRoot}"
+            "cwd": "${workspaceRoot}",
+            "preLaunchTask": "inject"
         },
         {
             "type": "node",

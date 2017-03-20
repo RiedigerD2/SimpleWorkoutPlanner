@@ -1,0 +1,9 @@
+{
+    "version": "0.1.0",
+    "showOutput": "always",
+    "echoCommand": true,
+    "command": "gulp",
+    "isShellCommand": true,
+    "args": ["inject"]
+
+}
