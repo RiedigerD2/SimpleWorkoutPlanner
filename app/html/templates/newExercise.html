@@ -2,12 +2,12 @@
     <div class="row">
         <button type="button" class="btn btn-lg btn-success col-xs-2" ng-click="listManager.Create()">New</button>
         <h1 class=" col-xs-8" style="text-align: center">Body Part</h1>
-        <button type="button" class="btn btn-lg btn-danger col-xs-2" ng-click="deleteExercise(focusedExercise)">Delete</button>
+        <button type="button" class="btn btn-lg btn-danger col-xs-2" ng-click="listManager.Delete(focusedExercise)">Delete</button>
     </div>
     <Div class="row">
         <form name='new-exercise-form' ng-submit='Save(listManager.focusedObject)'>
             <br/>
-            <input type='text' ng-model='listManager.focusedObject.exerciseName' class='form-control' placeholder='Body Part...' />
+            <input type='text' ng-model='listManager.focusedObject.exerciseName' class='form-control' placeholder='Exercise...' />
             <br/>
             <!--md-transform-chip="ctrl.transformChip($chip)" -->
             <md-chips ng-model="listManager.focusedObject.primaryMuscles" md-autocomplete-snap md-require-match="true">

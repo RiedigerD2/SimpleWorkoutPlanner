@@ -10,7 +10,7 @@
 
         return {
             addMuscle: function(muscleInfo) {
-                return muscleResource.post(null, muscleInfo).$promise.then(function(result) {
+                return muscleResource.save(null, muscleInfo).$promise.then(function(result) {
                     messagingService.addSuccess('Created muscle "' + muscleInfo.muscleName + '".');
                     return result;
                 }).catch(function(error) {
@@ -41,7 +41,7 @@
                 });
             },
             addBodyPart: function(bodyPartInfo) {
-                return bodyPartResource.post(null, bodyPartInfo).$promise.then(function(result) {
+                return bodyPartResource.save(null, bodyPartInfo).$promise.then(function(result) {
                     messagingService.addSuccess('Saved Body Part "' + bodyPartInfo.bodyPartName + '.');
                     return result;
                 }).catch(function(error) {
@@ -73,7 +73,7 @@
                 });
             },
             addExercise: function(exerciseInfo) {
-                return exerciseResource.post(null, exerciseInfo).$promise.then(function(result) {
+                return exerciseResource.save(null, exerciseInfo).$promise.then(function(result) {
                     messagingService.addSuccess('Saved Exercise "' + exerciseInfo.exerciseName + '.');
                     return result;
                 }).catch(function(error) {

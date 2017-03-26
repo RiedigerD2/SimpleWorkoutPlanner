@@ -6,7 +6,10 @@
             "name": "Launch Program",
             "program": "${workspaceRoot}/server/web-server.js",
             "cwd": "${workspaceRoot}",
-            "preLaunchTask": "inject"
+            "preLaunchTask": "inject",
+            "env": {
+                "PORT": "4000"
+            }
         },
         {
             "type": "node",

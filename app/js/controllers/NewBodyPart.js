@@ -15,7 +15,7 @@
             };
         }
 
-        var deleteBodyPart = function(bodyPart) {
+        function deleteBodyPart(bodyPart) {
             return admin.deleteBodyPart(bodyPart);
         };
 

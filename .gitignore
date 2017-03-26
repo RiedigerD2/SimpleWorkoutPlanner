@@ -1,9 +1,6 @@
 /node_modules/
-
 /app/lib/bower/*
-
 /app/lib/angular/
-
 /planning/
-
 /app/img/
+/server/.env

@@ -2,17 +2,16 @@
     <div class="row">
         <button type="button" class="btn btn-lg btn-success col-xs-2" ng-click="listManager.Create()">New</button>
         <h1 class=" col-xs-8" style="text-align: center">Body Part</h1>
-        <button type="button" class="btn btn-lg btn-danger col-xs-2" ng-click="deleteBodyPart(focusedBodyPart)">Delete</button>
+        <button type="button" class="btn btn-lg btn-danger col-xs-2" ng-click="listManager.Delete(listManager.focusedObject)">Delete</button>
     </div>
-    <Div class="row">
+    <div class="row">
         <form name='new-body-part-form' ng-submit='Save(listManager.focusedObject)'>
             <br/>
             <input type='text' ng-model='listManager.focusedObject.bodyPartName' class='form-control' placeholder='Body Part...' />
-            <!--md-transform-chip="ctrl.transformChip($chip)" -->
             <br/>
             <md-chips ng-model="listManager.focusedObject.muscles" md-autocomplete-snap md-require-match="true">
-                <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText" md-items="item in getMuscles(searchText)" md-item-text="item.muscleName" placeholder="Search for muscles..." secondary-placeholder="continue...">
-                    <span md-highlight-text="searchText">{{item.muscleName}}</span>
+                <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText" md-items="item in getMuscles(searchText) " md-item-text="item.muscleName " placeholder="Search for muscles..." secondary-placeholder="continue...">
+                    <span md-highlight-text="searchText ">{{item.muscleName}}</span>
                 </md-autocomplete>
                 <md-chip-template>
                     <span>
@@ -21,7 +20,7 @@
                 </md-chip-template>
             </md-chips>
             </br>
-            <input type="submit" value="Save" class="btn btn-primary col-xs-offset-4 col-xs-4" style="text-align: center">
+            <input type="submit" value='Save' class="btn btn-primary col-xs-offset-4 col-xs-4 " style="text-align: center ">
         </form>
     </div>
     <div class="row">
@@ -48,7 +47,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="bodyPart in listManager.displayList | orderBy :'bodyPartName'" ng-class="{selected: $index===listManager.getFocusedIndex()}" ng-click="listManager.Select(bodyPart,$index)">
+                <tr ng-repeat="bodyPart in listManager.displayList | orderBy : 'bodyPartName'" ng-class="{selected: $index===listManager.getFocusedIndex()} " ng-click="listManager.Select(bodyPart,$index)">
                     <td>{{bodyPart.bodyPartName}}</td>
                     <td>{{bodyPart.muscles.length}}</td>
                 </tr>
