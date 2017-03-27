@@ -86,3 +86,43 @@ html {
 ::-webkit-scrollbar-thumb {
     background: #333333;
 }
+
+.login-user-button {
+    position: relative;
+    top: 0;
+    float: right;
+}
+
+h1 {
+    text-align: center;
+}
+
+.login-form {
+    margin: 20px;
+}
+
+.login-form-container {
+    position: absolute;
+    margin-top: 20px;
+    left: 30%;
+    width: 40%;
+    height: 200px;
+}
+
+.login-form-button {
+    margin-top: 5px;
+}
+
+@media only screen and (min-width: 1048px) {
+    .login-form-button {
+        position: absolute;
+        left: 40%;
+        width: 20%;
+    }
+}
+
+@media only screen and (max-width: 1048px) {
+    .login-form-button {
+        width: 100%;
+    }
+}

@@ -38,6 +38,10 @@
                 .when('/admin/exercise', {
                     templateUrl: 'html/templates/newExercise.html',
                     controller: 'NewExerciseController'
+                })
+                .when('/login', {
+                    templateUrl: 'html/templates/login.html',
+                    controller: 'loginController'
                 });
         });
 

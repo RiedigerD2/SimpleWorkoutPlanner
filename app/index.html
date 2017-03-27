@@ -15,7 +15,10 @@
 <link rel="stylesheet" href="css/simpleWorkoutPlanner.css">
 <!-- endinject -->
 
+
 <body ng-cloak>
+    <swp-login-button></swp-login-button>
+
     <div>
         <ng-view class="main container-fluid"></ng-view>
     </div>
@@ -34,6 +37,9 @@
 <!-- endbower -->
 <!-- inject:js -->
 <script src="js/app.js"></script>
+<script src="js/directives/Transition.js"></script>
+<script src="js/directives/swpLoginButton.js"></script>
+<script src="js/directives/swpMessaging.js"></script>
 <script src="js/controllers/AdminController.js"></script>
 <script src="js/controllers/GeneratorController.js"></script>
 <script src="js/controllers/LandingController.js"></script>
@@ -44,8 +50,6 @@
 <script src="js/services/generalService.js"></script>
 <script src="js/services/listManagment.js"></script>
 <script src="js/services/messagingService.js"></script>
-<script src="js/directives/Transition.js"></script>
-<script src="js/directives/swpMessaging.js"></script>
 <!-- endinject -->
 <script src="/lib/ui-bootstrap/ui-bootstrap-tpls.js"></script>
 
