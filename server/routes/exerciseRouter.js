@@ -6,7 +6,7 @@ var exerciseLogic = require('../buisnessLogic/exercise.js');
 
 
 var routes = function(arg) {
-
+    arg(router);
     router.route('/').get(function(req, res) {
         if (req.query.name) {
             exerciseLogic.getExerciseByName(req.query.name).then(function(result) {

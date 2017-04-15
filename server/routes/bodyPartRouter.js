@@ -9,7 +9,7 @@ var routs = function(arg) {
 
 
 
-
+    arg(router)
 
     router.route('/').get(function(req, res) {
         if (req.query.name) {

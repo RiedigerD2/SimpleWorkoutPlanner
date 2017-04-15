@@ -3,16 +3,17 @@
 
     <div style='position: relative;'>
         <div class=' login-form-container'>
-            <form name='login-form' class='login-form' ng-submit='login()'>
-                <div class='well'>
+            <form name='login-form' class='login-form' ng-submit='register()'>
+                <div class='login-form-well well'>
                     <input type="email" class='form-control' ng-model="user.email" placeholder="Email" />
 
                     <input type="password" class='form-control' ng-model="user.password" placeholder='Password' />
+
+                    <input type="passwordCheck" class='form-control' ng-model="passwordCheck" placeholder='Confirm Password' ng-change="checkPasswords" />
                 </div>
                 <button type='submit' class='btn btn-primary btn-lg login-form-button'> Login</button>
             </form>
-            <a href='#/register' class='register-link link'>Create New Account</a>
+            <swp-messaging></swp-messaging>
         </div>
     </div>
-    <swp-messaging></swp-messaging>
 </div>

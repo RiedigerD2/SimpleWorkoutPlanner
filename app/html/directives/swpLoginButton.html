@@ -1,5 +1,8 @@
 <div class="login-user-button">
-    <div ng-show='showButton()'>
+    <div ng-show='showLoginButton()'>
         <button value='Login' ng-click='login()' class='btn btn-info '>Login</button>
+    </div>
+    <div ng-show='showLogoutButton()'>
+        <a value='Log out' ng-click='logout()' class='link'>Log out</a>
     </div>
 </div>

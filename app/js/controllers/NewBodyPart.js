@@ -48,9 +48,6 @@
                     return muscles;
                 });
         };
-
-
-
     };
     app.controller('NewBodyPartController', ['$scope', '$log', 'general', 'admin', 'listManagment', 'messagingService',
         NewBodyPartController

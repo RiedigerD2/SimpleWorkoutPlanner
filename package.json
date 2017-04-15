@@ -4,6 +4,7 @@
   "description": "Plan Workouts",
   "main": "app.js",
   "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
     "bluebird": "^3.5.0",
     "body-parser": "^1.15.2",
     "express": "^4.13.4",

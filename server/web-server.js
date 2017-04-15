@@ -4,11 +4,7 @@ var events = require('./server-controller');
 var app = express();
 var rootPath = path.normalize(__dirname + '/../');
 var bodyParser = require('body-parser');
-var muscleRouter = require('./routes/muscleRouter.js')();
-var bodyPartRouter = require('./routes/bodyPartRouter.js')();
-var exerciseRouter = require('./routes/exerciseRouter.js')();
-var generatorRouter = require('./routes/generatorRouter')();
-var adminRouter = require('./routes/adminRouter')();
+var jwt = require('./services/jwt.js');
 require('node-env-file')(__dirname + '/.env');;
 var mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
@@ -19,17 +15,47 @@ app.use(express.static(rootPath + '/app'));
 
 
 app.use(function(req, res, next) {
-    if (req.method === 'POST' || req.method === 'PUT') {
-        console.log(req.originalUrl)
+
+    var header = req.headers.authorization;
+    if (header) {
+        var userInfo = jwt.confirm(header.split(' ')[1], process.env.jwt_secret);
+        if (userInfo) {
+            req.authenticated = true;
+            //todo get user
+            return next();
+        }
     }
-    next()
+    req.authenticated = false;
+    next();
 })
 
-app.use('/generator', generatorRouter)
+function requireAuthenticationForEdit(router) {
+    router.use(function(req, res, next) {
+        if (req.method !== 'GET' && !req.authenticated) {
+            res.status(403);
+            return res.send('You must login to use this service')
+        }
+        next();
+    });
+}
+
+
+var muscleRouter = require('./routes/muscleRouter.js')(requireAuthenticationForEdit);
+var bodyPartRouter = require('./routes/bodyPartRouter.js')(requireAuthenticationForEdit);
+var exerciseRouter = require('./routes/exerciseRouter.js')(requireAuthenticationForEdit);
+var authenticationRouter = require('./routes/authenticationRouter.js')();
+var generatorRouter = require('./routes/generatorRouter')();
+var adminRouter = require('./routes/adminRouter')();
+
 app.use('/admin', adminRouter);
+app.use('/generator', generatorRouter)
 app.use('/muscle', muscleRouter);
 app.use('/bodypart', bodyPartRouter);
 app.use('/exercise', exerciseRouter);
+app.use('/', authenticationRouter);
+
+
+
 
 console.log(process.env);
 console.log(app.get('env'));

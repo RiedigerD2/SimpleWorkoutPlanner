@@ -1,7 +1,7 @@
 (function() {
 
     var app = angular.module('SimpleWorkoutPlanner', ['ngRoute', 'ngAnimate', 'ngResource', 'ngMaterial', 'ui.bootstrap'])
-        .config(function($routeProvider) {
+        .config(function($routeProvider, $httpProvider) {
             $routeProvider.when('/', {
                     templateUrl: 'html/templates/LandingPage.html',
                     controller: 'LandingPageController'
@@ -41,8 +41,15 @@
                 })
                 .when('/login', {
                     templateUrl: 'html/templates/login.html',
-                    controller: 'loginController'
+                    controller: 'loginRegisterController'
+                })
+                .when('/register', {
+                    templateUrl: 'html/templates/register.html',
+                    controller: 'loginRegisterController'
                 });
+
+            $httpProvider.interceptors.push('httpAuthentication');
+
         });
 
 

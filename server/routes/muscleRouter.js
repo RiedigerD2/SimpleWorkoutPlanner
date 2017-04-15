@@ -6,7 +6,7 @@ var muscleLogic = require('../buisnessLogic/muscles.js');
 
 
 var routs = function(arg) {
-
+    arg(router);
     router.route('/:muscleName').get(function(req, res) {
         var muscleName = req.params.muscleName;
 

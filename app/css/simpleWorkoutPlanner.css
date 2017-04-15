@@ -103,21 +103,24 @@ h1 {
 
 .login-form-container {
     position: absolute;
-    margin-top: 20px;
+    margin: 20px auto;
     left: 30%;
     width: 40%;
-    height: 200px;
 }
 
 .login-form-button {
     margin-top: 5px;
 }
 
+.login-form input {
+    margin: 10px 0;
+}
+
 @media only screen and (min-width: 1048px) {
     .login-form-button {
         position: absolute;
-        left: 40%;
-        width: 20%;
+        left: 35%;
+        width: 30%;
     }
 }
 
@@ -125,4 +128,21 @@ h1 {
     .login-form-button {
         width: 100%;
     }
+}
+
+.link:hover {
+    color: #cfcfcf;
+    cursor: pointer;
+}
+
+.link {
+    color: #7a7a7a;
+    margin: 5px 10px;
+}
+
+.register-link {
+    position: absolute;
+    right: 0;
+    margin: 0 20px;
+    bottom: -5px;
 }
