@@ -18,7 +18,7 @@ app.use(function(req, res, next) {
 
     var header = req.headers.authorization;
     if (header) {
-        var userInfo = jwt.confirm(header.split(' ')[1], process.env.jwt_secret);
+        var userInfo = jwt.decode(header.split(' ')[1], process.env.jwt_secret);
         if (userInfo) {
             req.authenticated = true;
             //todo get user
