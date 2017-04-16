@@ -46,6 +46,9 @@
                 .when('/register', {
                     templateUrl: 'html/templates/register.html',
                     controller: 'loginRegisterController'
+                }).when('/facebookAuth', {
+                    template: '',
+                    controller: 'facebookAuthController'
                 });
 
             $httpProvider.interceptors.push('httpAuthentication');

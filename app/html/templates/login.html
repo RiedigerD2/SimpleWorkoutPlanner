@@ -1,6 +1,7 @@
-<div class='container-fluid'>
+<div class='container-fluid' style='position: relative'>
     <h1>Login</h1>
 
+    <button class='btn btn-lg facebook' ng-click='facebookAuth()'>Facebook</button>
     <div style='position: relative;'>
         <div class=' login-form-container'>
             <form name='login-form' class='login-form' ng-submit='login()'>
@@ -14,5 +15,6 @@
             <a href='#/register' class='register-link link'>Create New Account</a>
         </div>
     </div>
+
     <swp-messaging></swp-messaging>
 </div>

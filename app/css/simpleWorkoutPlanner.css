@@ -104,6 +104,7 @@ h1 {
 .login-form-container {
     position: absolute;
     margin: 20px auto;
+    top: 70px;
     left: 30%;
     width: 40%;
 }
@@ -145,4 +146,12 @@ h1 {
     right: 0;
     margin: 0 20px;
     bottom: -5px;
+}
+
+.facebook {
+    position: absolute;
+    left: 30%;
+    margin: 30px auto;
+    width: 40%;
+    background: #3B5998;
 }

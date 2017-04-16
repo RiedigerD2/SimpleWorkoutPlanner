@@ -16,6 +16,10 @@
             register: {
                 method: 'post',
                 url: '/register',
+            },
+            facebookLogin: {
+                method: 'post',
+                url: '/facebookLogin'
             }
         });
 
@@ -148,6 +152,17 @@
                     throw error;
                 });
             },
+            facebookLogin: function(code) {
+                return authentication.facebookLogin(null, { code: code }).$promise.then(function(result) {
+                    messagingService.addSuccess('Logged in with facebook.');
+                    auth.setToken(result.jwt);
+                    return result;
+                }).catch(function(error) {
+                    $log.error(error);
+                    messagingService.addError('Failed to authenticate');
+                    throw error;
+                });
+            }
         };
     }]);
 }());

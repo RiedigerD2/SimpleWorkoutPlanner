@@ -9,8 +9,10 @@ var jwt = require('../services/jwt.js');
 var userSchema = new Schema({
     email: String,
     password: String,
+    name: String,
     cookie: String,
-    facebookKey: String
+    facebook_token: String,
+    facebook_id: Number,
 });
 
 
