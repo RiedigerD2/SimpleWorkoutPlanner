@@ -52,9 +52,20 @@ thead tr {
     background: #1A1B1B;
 }
 
-tr:hover {
+tr:hover:not(thead tr) {
     cursor: pointer;
     background: #3c4148 !important;
+}
+
+.workout-grid {
+    margin: 65px 0 0 5px;
+    background: #4a4e4a;
+    height: 400px;
+}
+
+tbody::after {
+    /*Needs the space*/
+    content: " "
 }
 
 
@@ -154,4 +165,24 @@ h1 {
     margin: 30px auto;
     width: 40%;
     background: #3B5998;
+}
+
+.exercise-sub-form {
+    margin: 20px 0;
+}
+
+.add-exercise-place-holder {
+    background: #4e4e4e;
+    position: relative;
+    height: 500px;
+}
+
+.add-exercise-place-holder h3 {
+    color: #1a1e1a;
+    display: block;
+    position: relative;
+    margin: 20px auto 0 auto;
+    padding-top: 10px;
+    width: 200px;
+    text-shadow: none;
 }

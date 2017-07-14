@@ -1,22 +1,22 @@
-(function () {
+(function() {
 
     var app = angular.module('SimpleWorkoutPlanner');
 
-    var LandingPageController = function ($scope, $location) {
+    var LandingPageController = function($scope, $location) {
 
-        $scope.generateWorkOut = function () {
+        $scope.generateWorkOut = function() {
             $location.path('/generator');
         };
 
-        $scope.MyWorkouts = function () {
-            $location.path('/my-workouts');
+        $scope.MyWorkouts = function() {
+            $location.path('/workouts');
         };
 
-        $scope.Exercises = function () {
+        $scope.Exercises = function() {
             $location.path('/exercises');
         };
 
-        $scope.Admin = function () {
+        $scope.Admin = function() {
             $location.path('/admin');
         };
     };

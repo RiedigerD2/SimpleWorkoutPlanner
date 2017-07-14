@@ -6,10 +6,13 @@
                     templateUrl: 'html/templates/LandingPage.html',
                     controller: 'LandingPageController'
                 })
-                .when('/my-workouts', {
+                .when('/workouts', {
                     templateUrl: 'html/templates/MyWorkouts.html',
-                    controller: 'LandingPageController'
+                    controller: 'MyWorkoutsController'
 
+                }).when('/newWorkout', {
+                    templateUrl: 'html/templates/newWorkout.html',
+                    controller: 'NewWorkoutController'
                 })
                 .when('/generator', {
                     templateUrl: 'html/templates/Generator.html',

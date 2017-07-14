@@ -1,0 +1,50 @@
+<div>
+    <h1>{{workout.name || 'New Workout'}}</h1>
+    <div>
+        <form id='newWorkOut' class='container' style='margin-top: 15px'>
+            <input type="text" class='form-control' ng-model='workout.name' placeholder="Workout Name" />
+
+            <div ng-if="addingExercise" class='well exercise-sub-form'>
+                <md-chips ng-model="searchMuscles" md-autocomplete-snap md-require-match="true">
+                    <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText" md-items="item in getMuscles(searchText)" md-item-text="item.muscleName" placeholder="Search for primary muscles..." secondary-placeholder="continue...">
+                        <span md-highlight-text="searchText">{{item.muscleName}}</span>
+                    </md-autocomplete>
+                    <md-chip-template>
+                        <span>
+                            {{$chip.muscleName}}
+                        </span>
+                    </md-chip-template>
+                </md-chips>
+
+                <table class='table table-striped' style='margin-top: 15px'>
+                    <thead>
+                        <tr>
+                            <td>Exercise</td>
+                            <td>Primary Muscles</td>
+                            <td>Secondary Muscles</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat='exercise in getExercises()'>
+                            <td>
+                                {{exercise.exerciseName}}
+                            </td>
+                            <td>
+                                {{exercise.primaryMuscles.join(', ')}}
+                            </td>
+                            <td>
+                                {{exercise.secondaryMuscles.length}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+            <div ng-if="!addingExercise" ng-click='addExercise()' class="add-exercise-place-holder">
+                <h3>Add Exercise</h3>
+            </div>
+
+        </form>
+    </div>
+</div>
