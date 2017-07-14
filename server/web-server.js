@@ -20,6 +20,7 @@ app.use(function(req, res, next) {
     if (header) {
         var userInfo = jwt.decode(header.split(' ')[1], process.env.jwt_secret);
         if (userInfo) {
+            req.user = userInfo;
             req.authenticated = true;
             //todo get user
             return next();
@@ -29,9 +30,9 @@ app.use(function(req, res, next) {
     next();
 })
 
-function requireAuthenticationForEdit(router) {
+function requireAdminForEdit(router) {
     router.use(function(req, res, next) {
-        if (req.method !== 'GET' && !req.authenticated) {
+        if (req.method !== 'GET' && !req.user.admin) {
             res.status(403);
             return res.send('You must login to use this service')
         }
@@ -40,9 +41,9 @@ function requireAuthenticationForEdit(router) {
 }
 
 
-var muscleRouter = require('./routes/muscleRouter.js')(requireAuthenticationForEdit);
-var bodyPartRouter = require('./routes/bodyPartRouter.js')(requireAuthenticationForEdit);
-var exerciseRouter = require('./routes/exerciseRouter.js')(requireAuthenticationForEdit);
+var muscleRouter = require('./routes/muscleRouter.js')(requireAdminForEdit);
+var bodyPartRouter = require('./routes/bodyPartRouter.js')(requireAdminForEdit);
+var exerciseRouter = require('./routes/exerciseRouter.js')(requireAdminForEdit);
 var authenticationRouter = require('./routes/authenticationRouter.js')();
 var generatorRouter = require('./routes/generatorRouter')();
 var adminRouter = require('./routes/adminRouter')();

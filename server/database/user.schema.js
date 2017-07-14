@@ -13,11 +13,18 @@ var userSchema = new Schema({
     cookie: String,
     facebook_token: String,
     facebook_id: Number,
+    admin: {
+        type: Boolean,
+        default: false
+    }
 });
 
 
 userSchema.pre('save', function(next) {
     var user = this;
+    //Deleting this on purpose to avoid accidently changing a user to admin
+    //for now admin users are created by updating DB directly
+    delete user.admin;
     if (!user.isNew && !user.isModified('password'))
         return next();
     bcrypt.genSalt(15, (err, salt) => {
